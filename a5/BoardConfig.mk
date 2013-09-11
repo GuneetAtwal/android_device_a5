@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+#inherit from the common msm7627a definitions
+include device/karbonn/a5/qcom/msm7627a/BoardConfig.mk
+
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
