@@ -62,9 +62,6 @@ else
     USE_CAMERA_STUB := true
 endif # QC_PROP
 
-# Tatget Device
-TARGET_DEVICE_KARBONN := a5
-
 # GPS
 #BOARD_USES_QCOM_GPS := true
 #BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm7627a
