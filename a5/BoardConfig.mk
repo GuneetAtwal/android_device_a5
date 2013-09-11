@@ -63,6 +63,16 @@ ifeq ($(QC_PROP),true)
 #    BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50001
 #    BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
+    BOARD_HAVE_BLUETOOTH := true
+    BOARD_HAVE_QCOM_FM := true
+    PROTEUS_DEVICE_API := true
+    #HACK use Camera Stub
+     USE_CAMERA_STUB =: true
+#    BOARD_CAMERA_LIBRARIES := libcamera
+
+
+    endif   # !BUILD_TINY_ANDROID
+
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00a00000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00a00000
