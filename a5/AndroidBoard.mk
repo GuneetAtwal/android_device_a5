@@ -1,1 +1,1 @@
-include device/qcom/msm7627a/AndroidBoard.mk
+include device/karbonn/a5/qcom/msm7627a/AndroidBoard.mk
