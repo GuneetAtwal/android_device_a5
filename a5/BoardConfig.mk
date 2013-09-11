@@ -24,16 +24,16 @@ USE_CAMERA_STUB := true
 
 # Platform
 TARGET_BOOTLOADER_BOARD_NAME := a5
-TARGET_BOARD_PLATFORM := msm7627a
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 ARGET_NO_BOOTLOADER := true
-TARGET_CPU_ABI  := armeabi-v7a
+TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
 TARGET_CORTEX_CACHE_LINE_32 := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_ARCH_VARIANT_CPU := cortex-a5
 
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00a00000
