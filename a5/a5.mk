@@ -20,16 +20,19 @@
 # Get the long list of APNs
 PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
 
-# Inherit from common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+## Specify phone tech before including full_phone
+$(call inherit-product, vendor/cm/config/gsm.mk)
 
-PRODUCT_NAME := cm_a5
-PRODUCT_DEVICE :=a5
-PRODUCT_BRAND := Karbonn
-PRODUCT_MANUFACTURER := Karbonn
-PRODUCT_MODEL := Karbonn A5
-PRODUCT_RESTRICT_VENDOR_FILES := false
+# Inherit some common CM stuff.
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-# Inherit from hardware-specific part of the product configuration
+# Inherit device configuration
 $(call inherit-product, device/karbonn/a5/a5.mk)
-$(call inherit-product-if-exists, vendor/karbonn/a5/a5-vendor.mk)
+
+## Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := a5
+PRODUCT_NAME := cm_a5
+PRODUCT_BRAND := Karbonn
+PRODUCT_MODEL := a5
+PRODUCT_MANUFACTURER := Karbonn
+PRODUCT_RESTRICT_VENDOR_FILES := false
