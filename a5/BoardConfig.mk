@@ -40,6 +40,8 @@ TARGET_PREBUILT_KERNEL := device/karbonn/a5/kernel
 # Skip droiddoc build to save build time
 BOARD_SKIP_ANDROID_DOC_BUILD := true
 
+QC_PROP := true
+
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00a00000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00a00000
