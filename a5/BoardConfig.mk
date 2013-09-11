@@ -60,6 +60,9 @@ ifeq ($(QC_PROP),true)
     TARGET_NO_RPC := false
     ifneq ($(BUILD_TINY_ANDROID), true)
 
+#    BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50001
+#    BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
+
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00a00000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00a00000
