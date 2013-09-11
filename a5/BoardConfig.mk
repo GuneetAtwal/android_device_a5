@@ -1,26 +1,12 @@
 #
-# Copyright 2012 The Android Open Source Project
+# config.mk
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# Product-specific compile-time definitions.
 #
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# GuneetAtwal
 
 #inherit from the common msm7627a definitions
 include device/karbonn/a5/qcom/msm7627a/BoardConfig.mk
-
-USE_CAMERA_STUB := true
-
-# inherit from the proprietary version
-# -include vendor/lge/p500/a70-vendor-blobs.mk
 
 # Platform
 TARGET_BOOTLOADER_BOARD_NAME := a5
@@ -59,10 +45,8 @@ ifeq ($(QC_PROP),true)
     MM_AUDIO_MVS_DISABLED :=true
     TARGET_NO_RPC := false
     ifneq ($(BUILD_TINY_ANDROID), true)
-
 #    BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50001
 #    BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
-
     BOARD_HAVE_BLUETOOTH := true
     BOARD_HAVE_QCOM_FM := true
     PROTEUS_DEVICE_API := true
@@ -73,56 +57,60 @@ ifeq ($(QC_PROP),true)
 
     endif   # !BUILD_TINY_ANDROID
 
-# fix this up by examining /proc/mtd on a running device
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00a00000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00a00000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0d200000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0b3c0000
-BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_KERNEL_PAGESIZE := 1024
-TARGET_PREBUILT_KERNEL := device/karbonn/a5/kernel
+else
+    BOARD_USES_GENERIC_AUDIO := true
+    USE_CAMERA_STUB := true
+endif # QC_PROP
 
-BOARD_HAS_NO_SELECT_BUTTON := true
-
-TARGET_PROVIDES_LIBAUDIO := true
-TARGET_PROVIDES_LIBRIL := true
-
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-
-# Graphics
-USE_OPENGL_RENDERER := true
-TARGET_USES_OVERLAY := false
-TARGET_HAVE_BYPASS  := false
-TARGET_USES_GENLOCK := true
-TARGET_QCOM_HDMI_OUT := false
-TARGET_USES_ION := true
-TARGET_NO_HW_VSYNC := true
-BOARD_EGL_CFG := device/karbonn/a5/include/egl/egl.cfg
-
-TARGET_PROVIDES_LIBLIGHTS := true
-
-TARGET_SPECIFIC_HEADER_PATH := device/karbonn/a5/include
-TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
-BOARD_CAMERA_USE_GETBUFFERINFO := true
-
-# Workaround for missing symbols in camera
-COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
-BOARD_NEEDS_MEMORYHEAPPMEM := true
-
-# QCOM hardware
-BOARD_USES_QCOM_HARDWARE := true
-BOARD_USES_QCOM_LIBS := true
+# Tatget Device
+TARGET_DEVICE_KARBONN := a5
 
 # GPS
-BOARD_USES_QCOM_LIBRPC := true
-BOARD_USES_QCOM_GPS := true
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm7x27a
-BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
+#BOARD_USES_QCOM_GPS := true
+#BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm7627a
+#BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
+
+BOARD_USES_SRS_TRUEMEDIA := true
+
+TARGET_NO_HW_VSYNC := true
+# Video  GuneetAtwal
+COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_DECODERS
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_COMPAT 
+
+# ICS Camera
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+BOARD_CAMERA_USE_MM_HEAP := true
+
+#Video
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_DECODERS
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
 
-# Webkit
-ENABLE_WEBGL := true
-TARGET_FORCE_CPU_UPLOAD := true
+# Vold      // GuneetAtwal
+COMMON_GLOBAL_CFLAGS += -DVOLD_SINGLE_SD
+
+# light
+TARGET_PROVIDES_LIBLIGHTS := true
+
+
+
+# Wi-Fi
+BOARD_WLAN_DEVICE 					:= bcmdhd
+WPA_SUPPLICANT_VERSION 				:= VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER 		:= NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB 	:= lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER 				:= NL80211
+BOARD_HOSTAPD_PRIVATE_LIB 			:= lib_driver_cmd_bcmdhd
+WIFI_DRIVER_MODULE_PATH     		:= "/system/lib/modules/bcmdhd.ko"
+WIFI_DRIVER_MODULE_NAME     		:= "bcmdhd"
+WIFI_DRIVER_MODULE_ARG      		:= "firmware_path=/system/etc/firmware/fw_bcmdhd.bin nvram_path=/system/etc/firmware/nvram.txt"
+WIFI_DRIVER_FW_PATH_PARAM   		:= "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA     		:= "/system/etc/firmware/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_AP      		:= "/system/etc/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_P2P                := "/system/etc/firmware/fw_bcmdhd_p2p.bin"
+BOARD_LEGACY_NL80211_STA_EVENTS		:= true
+BOARD_USE_SERNUM_FOR_MAC 			:= true
