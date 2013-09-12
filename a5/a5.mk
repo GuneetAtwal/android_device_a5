@@ -1,4 +1,4 @@
-include device/karbonn/a5/qcom/msm7627a.mk
+include device/karbonn/a5/qcom/msm7627a/msm7627a.mk
 
 DEVICE_PACKAGE_OVERLAYS := device/karbonn/a5/overlay
 
