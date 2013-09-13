@@ -21,7 +21,7 @@ TARGET_CORTEX_CACHE_LINE_32 := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_ARCH_VARIANT_CPU := cortex-a5
 
-TARGET_PREBUILT_KERNEL := device/karbonn/a5/kernel
+TARGET_PREBUILT_KERNEL := device/karbonn/a5/prebuilt/kernel
 
 # Skip droiddoc build to save build time
 BOARD_SKIP_ANDROID_DOC_BUILD := true
