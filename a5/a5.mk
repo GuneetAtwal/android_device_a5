@@ -9,9 +9,6 @@ PRODUCT_PACKAGES += \
     sensors.msm7627a
 
 PRODUCT_PACKAGES += \
-    SystemUI_Ext \
-    Apollo \
-    CMFileManager \
     superuser \
     DSPManager \
     libcyanogen-dsp \
